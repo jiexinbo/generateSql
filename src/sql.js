@@ -2,7 +2,7 @@ const { rejects } = require('assert');
 const fs = require('fs');
 const { resolve } = require('path');
 const path = require('path')
-const { readTable } = require("./readTable");
+const { readTable } = require('./readTable');
 
 exports.newFile = function (fileName) {
   fileName = fileName ? fileName : './sql/sql' + new Date().getTime() + '.sql';
@@ -10,17 +10,17 @@ exports.newFile = function (fileName) {
     //检测文件是否存在
     fs.stat(fileName, (err, data) => {
       if (err) {
-        fs.writeFile(fileName, "", (err) => {
+        fs.writeFile(fileName, '', (err) => {
           if (err) {
-            console.log("创建写入失败")
+            console.log('创建写入失败')
             reject(err);
           }else{
-            console.log("创建写入成功");
+            console.log('创建写入成功');
             resolve(fileName);
           }
         })
       }else{
-        console.log("文件已存在 ");
+        console.log('文件已存在 ');
         reject(err);
       }
     });
@@ -46,10 +46,10 @@ function writeFile(fileName, table, sqlTemplate) {
     const tablename = table.tablename[i];
     const tablevalue = table.tablevalue[i];
     let sql = sqlTemplate;
-    // sql=replaceAll(sql,"{tablename}",tablename);
-    // sql=replaceAll(sql,"{tablevalue}",tablevalue);
-    sql = sql.replaceAll("{tablename}", tablename);
-    sql = sql.replaceAll("{tablevalue}", tablevalue);
+    // sql=replaceAll(sql,'{tablename}',tablename);
+    // sql=replaceAll(sql,'{tablevalue}',tablevalue);
+    sql = sql.replaceAll('{tablename}', tablename);
+    sql = sql.replaceAll('{tablevalue}', tablevalue);
     fs.appendFile(fileName, sql, { encoding: 'utf8' }, err => { })
   }
 }
