@@ -1,10 +1,9 @@
-const { rejects } = require('assert');
-const fs = require('fs');
-const { resolve } = require('path');
-const path = require('path')
-const { readTable } = require('./readTable');
 
-exports.newFile = function (fileName) {
+import fs from 'fs';
+import path from 'path';
+import {readTable} from './readTable.js';
+
+export function newFile (fileName) {
   fileName = fileName ? fileName : './sql/sql' + new Date().getTime() + '.sql';
   return new Promise((resolve, reject) => {
     //检测文件是否存在
@@ -29,12 +28,7 @@ exports.newFile = function (fileName) {
 
 
 }
-exports.generateSql = function (fileName, excelPath, sqlTemplate) {
-  const table = readTable(excelPath);
-  writeFile(fileName, table, sqlTemplate);
-}
-
-function generateSql(fileName, excelPath, sqlTemplate) {
+export function generateSql (fileName, excelPath, sqlTemplate) {
   const table = readTable(excelPath);
   writeFile(fileName, table, sqlTemplate);
 }

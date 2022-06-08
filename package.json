@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type":"module",
   "scripts": {
-    "script": "node index.js"
+    "commonjs": "node ./src/index_common.js",
+    "esm": "node ./src/index_esm.js"
   },
   "author": "",
   "license": "ISC",
